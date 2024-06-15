@@ -10,11 +10,10 @@ from sklearn.metrics import classification_report
 # Carregar os dados
 data = pd.read_csv('diabeteDados.csv', delimiter=';', header=0)
 
-
-# Separar os dados em features (X) e target (y)
-X = data.drop('Outcome', axis=1)  # Exclua a coluna do rótulo
+# Selecionar apenas as features contínuas (excluindo 'Pregnancies' e 'Outcome')
+continuous_features = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+X = data[continuous_features]
 y = data['Outcome']
-
 
 # Normalizar os dados
 scaler = StandardScaler()
@@ -51,5 +50,7 @@ plt.xlabel('Principal Componente 1')
 plt.yticks([], [])
 plt.legend()
 plt.show()
+
+
 
 
